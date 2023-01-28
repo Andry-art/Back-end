@@ -1,0 +1,36 @@
+{
+  "env": {
+    "es2021": true,
+    "node": true
+  },
+  "extends": "standard",
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "no-console": "off",
+    "no-var": "error",
+    "arrow-parens": "off",
+    "class-methods-use-this": "warn",
+    "consistent-return": "warn",
+    "no-trailing-spaces": "off",
+    "no-confusing-arrow": "warn",
+    "no-plusplus": "off",
+    "no-debugger": "off",
+    "no-shadow": "warn",
+    "no-nested-ternary": "warn",
+    "comma-dangle": ["warn", "always-multiline"],
+    "semi": ["warn", "always"],
+    "quotes": ["warn", "single", { "avoidEscape": true }],
+    "space-before-function-paren": [
+      "warn",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "new-cap": "off"
+  }
+}

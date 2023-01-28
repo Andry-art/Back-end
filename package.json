@@ -3,18 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Andry-art/Back-end.git"
+  "dependencies": {
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
+    "mongoose": "^6.8.4"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Andry-art/Back-end/issues"
+  "devDependencies": {
+    "nodemon": "2.0.20",
+    "prettier": "2.7.1",
+    "eslint": "8.25.0",
+    "eslint-config-standard": "17.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-n": "15.3.0",
+    "eslint-plugin-promise": "6.1.0"
   },
-  "homepage": "https://github.com/Andry-art/Back-end#readme"
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": "prettier --write"
+  }
 }
