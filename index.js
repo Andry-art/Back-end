@@ -7,8 +7,8 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const DB_URL = 'mongodb+srv://user:1234@cluster0.pc8ffsz.mongodb.net/?retryWrites=true&w=majority';
-const PORT = 434;
+const DB_URL = process.env.DB_URL;
+const PORT = 4000;
 const app = express();
 
 app.use(
