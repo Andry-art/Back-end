@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const DB_URL = 'mongodb+srv://user:1234@cluster0.pc8ffsz.mongodb.net/?retryWrites=true&w=majority';
-const PORT = 4000;
+const PORT = 'https://funny-gray-drill.cyclic.app';
 const app = express();
 
 app.use(
