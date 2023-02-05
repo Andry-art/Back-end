@@ -11,8 +11,8 @@ class authControler {
       });
       return res.status(200).json(userData);
     } catch (e) {
-      console.log(e);
-      res.status(400).json({ message: 'Registration Error' });
+      next(e);
+      // res.status(400).json({ message: 'Registration Error' });
     }
   }
 
@@ -26,8 +26,8 @@ class authControler {
       });
       return res.status(200).json(userData);
     } catch (e) {
-      console.log(e);
-      res.status(400).json({ message: 'LogIn Error' });
+      next(e);
+      // res.status(400).json({ message: 'LogIn Error' });
     }
   }
 
@@ -38,7 +38,7 @@ class authControler {
       res.clearCookie('refreshToken');
       return res.status(200).json(token);
     } catch (e) {
-      console.log(e);
+      next(e);
     }
   }
 
@@ -52,7 +52,7 @@ class authControler {
       });
       return res.status(200).json(userData);
     } catch (e) {
-      console.log(e);
+      next(e);
     }
   }
 }

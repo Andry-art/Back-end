@@ -2,12 +2,13 @@ import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import tokenService from './token-service.js';
 import userDto from '../dto/user-dto.js';
+import ApiError from '../exeption/api-error.js';
 
 class userService {
   async signUp(email, password) {
     const candidate = await User.findOne({ email });
     if (candidate) {
-      throw new Error('user with this email already exist');
+      throw ApiError.BadRequest('user with this email already exist')
     }
     const hashPassword = bcrypt.hashSync(password, 7);
     const user = await User.create({ email, password: hashPassword });
@@ -23,7 +24,7 @@ class userService {
   async logIn(email, password) {
     const user = await User.findOne({ email });
     if (!user) {
-      throw new Error('user did not find');
+      throw ApiError.BadRequest('user did not find');
     }
     const isPasswordEqual = bcrypt.compareSync(password, user.password);
     if (!isPasswordEqual) {
