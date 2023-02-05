@@ -5,6 +5,7 @@ import authRouter from './src/routers/authRoute.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+import errorMidleware from './src/middleWare/error-middleware.js';
 
 dotenv.config();
 const DB_URL = process.env.DB_URL;
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/auth', authRouter);
+app.use(errorMidleware)
 
 const startApp = async () => {
   try {
