@@ -2,22 +2,26 @@ import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import tokenService from './token-service.js';
 import userDto from '../dto/user-dto.js';
+import UserData from '../dto/user-data.js'
 import ApiError from '../exeption/api-error.js';
 
 class userService {
   async signUp(email, password) {
     const candidate = await User.findOne({ email });
     if (candidate) {
-      throw ApiError.BadRequest('user with this email already exist')
+      throw ApiError.BadRequest('user with this email already exist');
     }
     const hashPassword = bcrypt.hashSync(password, 7);
     const user = await User.create({ email, password: hashPassword });
-    const userD = new userDto(user);
-    const tokens = tokenService.generateTokens({ ...userD });
-    tokenService.saveToken(userD.id, tokens.refreshRoken);
+    console.log(user, 'sbsrbsrb');
+    const userInfo = new userDto(user);
+    const userData = new UserData(user);
+    const tokens = tokenService.generateTokens({ ...userInfo });
+    tokenService.saveToken(userInfo.id, tokens.refreshRoken);
     return {
       ...tokens,
-      user: userD,
+      user: userInfo,
+      data: userData,
     };
   }
 
@@ -30,12 +34,14 @@ class userService {
     if (!isPasswordEqual) {
       throw new Error('password is wrong');
     }
-    const userD = new userDto(user);
-    const tokens = tokenService.generateTokens({ ...userD });
-    tokenService.saveToken(userD.id, tokens.refreshRoken);
+    const userInfo = new userDto(user);
+    const userData = new UserData(user);
+    const tokens = tokenService.generateTokens({ ...userInfo });
+    tokenService.saveToken(userInfo.id, tokens.refreshRoken);
     return {
       ...tokens,
-      user: userD,
+      user: userInfo,
+      data: userData,
     };
   }
 
