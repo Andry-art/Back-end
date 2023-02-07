@@ -2,7 +2,6 @@ import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import tokenService from './token-service.js';
 import userDto from '../dto/user-dto.js';
-import UserData from '../dto/user-data.js'
 import ApiError from '../exeption/api-error.js';
 
 class userService {
@@ -14,13 +13,11 @@ class userService {
     const hashPassword = bcrypt.hashSync(password, 7);
     const user = await User.create({ email, password: hashPassword });
     const userInfo = new userDto(user);
-    const userData = new UserData(user);
     const tokens = tokenService.generateTokens({ ...userInfo });
     tokenService.saveToken(userInfo.id, tokens.refreshRoken);
     return {
       ...tokens,
       user: userInfo,
-      data: userData,
     };
   }
 
@@ -34,13 +31,11 @@ class userService {
       throw new Error('password is wrong');
     }
     const userInfo = new userDto(user);
-    const userData = new UserData(user);
     const tokens = tokenService.generateTokens({ ...userInfo });
     tokenService.saveToken(userInfo.id, tokens.refreshRoken);
     return {
       ...tokens,
       user: userInfo,
-      data: userData,
     };
   }
 
