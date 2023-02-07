@@ -1,8 +1,8 @@
 import Router from 'express';
-import dailyInfoControler from '../controlers/dailyInfoControler.js';
+import stepsHistory from '../controlers/stepsHistory.js';
 
 const router = new Router();
 
-router.post('/todayinfo', dailyInfoControler.getInfo);
+router.get('/todayinfo', stepsHistory.getInfo);
 
 export default router;
