@@ -5,7 +5,7 @@ const UserSchema = new Schema({
   password: { type: String, unique: true, required: true },
   balance: { type: Number, required: true, default: 0 },
   dailySteps: { type: Number, required: true, default: 0 },
-  dailyActiveType: { type: Number, required: true, default: 0 },
+  dailyActiveTime: { type: Number, required: true, default: 0 },
   dailyDestenation: { type: Number, required: true, default: 0 },
   dailyBalance: { type: Number, required: true, default: 0 },
   stepsHistory: [
