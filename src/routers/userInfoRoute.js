@@ -1,9 +1,8 @@
 import Router from 'express';
-import authControler from '../controlers/authControler.js';
+import dailyInfoControler from '../controlers/dailyInfoControler.js';
 
 const router = new Router();
 
-// router.get('/todayInfo', authControler.signUp);
-
+router.post('/todayinfo', dailyInfoControler.getInfo);
 
 export default router;

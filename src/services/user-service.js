@@ -13,7 +13,6 @@ class userService {
     }
     const hashPassword = bcrypt.hashSync(password, 7);
     const user = await User.create({ email, password: hashPassword });
-    console.log(user, 'sbsrbsrb');
     const userInfo = new userDto(user);
     const userData = new UserData(user);
     const tokens = tokenService.generateTokens({ ...userInfo });
