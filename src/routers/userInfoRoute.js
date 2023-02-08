@@ -3,6 +3,7 @@ import stepsHistory from '../controlers/stepsHistory.js';
 
 const router = new Router();
 
-router.get('/todayinfo', stepsHistory.getInfo);
+router.get('/userhistory', stepsHistory.getInfo);
+router.post('/newstepitem', stepsHistory.postNewItem);
 
 export default router;

@@ -27,7 +27,7 @@ app.use(cors());
 
 app.use('/auth', authRouter);
 app.use('/data', userInfoRoute);
-app.use(errorMidleware)
+app.use(errorMidleware);
 
 const startApp = async () => {
   try {
