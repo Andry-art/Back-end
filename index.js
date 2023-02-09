@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
       if (error) {
         console.error(error);
       } else {
-        console.log(message);
+        console.log('message');
       }
     });
   });
@@ -52,11 +52,11 @@ const startApp = async () => {
   try {
     mongoose.set('strictQuery', true);
     await mongoose.connect(DB_URL);
+    httpServer.listen(3000);
     app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
   } catch (e) {
     console.log(e);
   }
-  httpServer.listen(3000);
 };
 
 startApp();
