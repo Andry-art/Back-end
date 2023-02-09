@@ -18,11 +18,11 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 io.on('connection', (socket) => {
-  socket.on('message', (data) => {
+  socket.on('message', async (data) => {
     const query = { userId: data.userId, date: data.date };
     const update = { steps: data.steps, tokens: data.tokens };
     const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-    HistoryOfSteps.findOneAndUpdate(query, update, options, (error, message) => {
+    await HistoryOfSteps.findOneAndUpdate(query, update, options, (error, message) => {
       if (error) {
         console.error(error);
       } else {
