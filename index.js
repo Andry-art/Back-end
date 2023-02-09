@@ -6,7 +6,7 @@ import userInfoRoute from './src/routers/userInfoRoute.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-import errorMiddleware from './src/middleware/error-middleware.js';
+import errorMidleware from './src/middleWare/error-middleware.js'
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import mongodb from 'mongodb';
@@ -56,7 +56,7 @@ app.use(cors());
 
 app.use('/auth', authRouter);
 app.use('/data', userInfoRoute);
-app.use(errorMiddleware);
+app.use(errorMidleware);
 
 const startApp = async () => {
   try {
