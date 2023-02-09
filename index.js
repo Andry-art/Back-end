@@ -10,7 +10,7 @@ import errorMidleware from './src/middleWare/error-middleware.js';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import HistoryOfSteps from './src/models/HistoryOfSteps.js';
-import SocketIoMongoDbAdapter from 'socket.io-mongodb-adapter';
+import SocketIoMongoDbAdapter from '@socket.io/mongo-adapter';
 
 dotenv.config();
 const DB_URL = process.env.DB_URL;
@@ -44,8 +44,6 @@ app.use(
     },
   }),
 );
-
-
 
 app.use(express.json());
 app.use(cookieParser());
