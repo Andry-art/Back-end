@@ -8,8 +8,6 @@ class userInfoService {
 
   async postNewSteps(userId, date, steps, tokens) {
     const stepDate = await HistoryOfSteps.find({ date, userId });
-
-    console.log(stepDate, 'dadadddddddd')
     if (stepDate.length) {
       return;
     }
