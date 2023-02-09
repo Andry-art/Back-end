@@ -4,7 +4,6 @@ class stepsHistory {
   async getInfo(req, res, next) {
     try {
       const id = req.query.userId;
-      console.log(id, 'datdatdat');
       const userData = await userInfoService.getHistorySteps(id);
       return res.status(200).json(userData);
     } catch (e) {

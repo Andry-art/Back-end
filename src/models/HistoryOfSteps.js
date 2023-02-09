@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 const HistoryOfSteps = new Schema({
   userId: String,
-  date: Date,
+  date: String,
   steps: Number,
   tokens: Number,
 });
