@@ -8,12 +8,13 @@ class userInfoService {
 
   async postNewSteps(userId, date, steps, tokens) {
     const query = { userId, date };
-    const update = { steps, tokens };
     const item = await HistoryOfSteps.findOne(query);
     console.log(item, 'ddddd');
     if (item) {
-      const updated = await HistoryOfSteps.updateOne(query, update);
-      console.log(updated, 'sjhvbsrjhvb')
+      const updatedItem = { steps: item.steps + steps, tokens: item.tokens + tokens }
+      console.log(updatedItem, 'sjhvbsrjhvb');
+      const updated = await HistoryOfSteps.updateOne(query, updatedItem);
+      console.log(updated, 'sjhvbsrjhvb');
       return updated;
     }
     if (!item) {
