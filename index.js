@@ -16,17 +16,18 @@ const PORT = 4000;
 const appExp = express();
 const { app } = expressWs(appExp);
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      connectSrc: ["'self'", 'http://localhost:4000/'],
-    },
-  }),
-);
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       connectSrc: ["'self'", 'http://localhost:4000/'],
+//     },
+//   }),
+// );
 app.ws('/', (ws, res) => {
   ws.on('message', async (data) => {
     await userInfoService.postNewSteps(data)
   });
+  ws.send('done')
 });
 app.use(express.json());
 app.use(cookieParser());

@@ -7,8 +7,9 @@ class userInfoService {
   }
 
   async postNewSteps(data) {
-    const query = { userId: data.userId, date: data.date };
-    const update = { steps: data.steps, tokens: data.tokens };
+    const parsData = JSON.parse(data)
+    const query = { userId: parsData.userId, date: parsData.date };
+    const update = { steps: parsData.steps, tokens: parsData.tokens };
     const item = await HistoryOfSteps.findOne(query);
     console.log(item);
     if (item) {
