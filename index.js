@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import errorMidleware from './src/middleWare/error-middleware.js';
 import expressWs from 'express-ws';
-import userInfoService from './src/services/userInfo-service.js'
+import userInfoService from './src/services/userInfo-service.js';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 
@@ -29,10 +29,11 @@ app.use(
 
 io.on('connection', (socket) => {
   socket.on('message', async (data) => {
-console.log(data, 'sdvsvs')
-await userInfoService.postNewSteps(data);
-  })
-})
+    console.log(data, 'sdvsvs');
+    await userInfoService.postNewSteps(data);
+  });
+  socket.emit('message', 'done');
+});
 // app.ws('/socket', (ws, res) => {
 //   ws.on('message', async (data) => {
 //     console.log(data)
