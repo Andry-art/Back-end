@@ -6,13 +6,18 @@ class userInfoService {
     return user;
   }
 
-  async postNewSteps(userId, date, steps, tokens) {
-    const stepDate = await HistoryOfSteps.find({ date, userId });
-    if (stepDate.length) {
-      return;
+  async postNewSteps(data) {
+    const parsData = JSON.parse(data);
+    const query = { userId: parsData.userId, date: parsData.date };
+    const update = { steps: parsData.steps, tokens: parsData.tokens };
+    const item = await HistoryOfSteps.findOne(query);
+    console.log(item);
+    if (item) {
+      await HistoryOfSteps.updateOne(query, update);
     }
-    const newStep = await HistoryOfSteps.create({ userId, date, steps, tokens });
-    return newStep;
+    if (!item) {
+      await HistoryOfSteps.create(parsData);
+    }
   }
 }
 
