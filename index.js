@@ -7,7 +7,6 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import errorMidleware from './src/middleWare/error-middleware.js';
-import expressWs from 'express-ws';
 import userInfoService from './src/services/userInfo-service.js';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
@@ -38,12 +37,7 @@ io.on('connection', (socket) => {
     console.log('Client disconnected');
   });
 });
-// app.ws('/socket', (ws, res) => {
-//   ws.on('message', async (data) => {
-//     console.log(data)
-//     await userInfoService.postNewSteps(data);
-//   });
-// });
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
@@ -56,7 +50,7 @@ const startApp = async () => {
   try {
     mongoose.set('strictQuery', true);
     await mongoose.connect(DB_URL);
-    http.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
+    http.listen(PORT, { upgrade: true }, () => console.log('SERVER STARTED ON PORT ' + PORT));
     // app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
   } catch (e) {
     console.log(e);
