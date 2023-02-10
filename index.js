@@ -51,8 +51,8 @@ const startApp = async () => {
   try {
     mongoose.set('strictQuery', true);
     await mongoose.connect(DB_URL);
-    // http.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
-    app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
+    http.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
+    // app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
   } catch (e) {
     console.log(e);
   }
