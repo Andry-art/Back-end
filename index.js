@@ -23,7 +23,7 @@ app.use(
     },
   }),
 );
-app.ws('/', (ws, res) => {
+app.ws('/socket', (ws, res) => {
   ws.on('message', async (data) => {
     await userInfoService.postNewSteps(data)
   });
