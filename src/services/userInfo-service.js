@@ -7,16 +7,15 @@ class userInfoService {
   }
 
   async postNewSteps(data) {
-    const parsData = JSON.parse(data);
-    const query = { userId: parsData.userId, date: parsData.date };
-    const update = { steps: parsData.steps, tokens: parsData.tokens };
+    const query = { userId: data.userId, date: data.date };
+    const update = { steps: data.steps, tokens: data.tokens };
     const item = await HistoryOfSteps.findOne(query);
     console.log(item);
     if (item) {
       await HistoryOfSteps.updateOne(query, update);
     }
     if (!item) {
-      await HistoryOfSteps.create(parsData);
+      await HistoryOfSteps.create(data);
     }
   }
 }
