@@ -7,11 +7,14 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import errorMidleware from './src/middleWare/error-middleware.js';
+import expressWs from 'express-ws';
+import userInfoService from './src/services/userInfo-service.js'
 
 dotenv.config();
 const DB_URL = process.env.DB_URL;
 const PORT = 4000;
-const app = express();
+const appExp = express();
+const { app } = expressWs(appExp);
 
 app.use(
   helmet.contentSecurityPolicy({
@@ -20,7 +23,11 @@ app.use(
     },
   }),
 );
-
+app.ws('/', (ws, res) => {
+  ws.on('message', async (data) => {
+    await userInfoService.postNewSteps(data)
+  });
+});
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
