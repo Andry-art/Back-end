@@ -33,6 +33,10 @@ io.on('connection', (socket) => {
     await userInfoService.postNewSteps(data);
   });
   socket.emit('message', 'done');
+
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
 });
 // app.ws('/socket', (ws, res) => {
 //   ws.on('message', async (data) => {
