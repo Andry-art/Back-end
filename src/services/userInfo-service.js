@@ -6,17 +6,19 @@ class userInfoService {
     return user;
   }
 
-  async postNewSteps(data) {
-    const parsData = JSON.parse(data)
-    const query = { userId: parsData.userId, date: parsData.date };
-    const update = { steps: parsData.steps, tokens: parsData.tokens };
+  async postNewSteps(userId, date, steps, tokens) {
+    const query = { userId, date };
+    const update = { steps, tokens };
     const item = await HistoryOfSteps.findOne(query);
-    console.log(item);
+    console.log(item, 'ddddd');
     if (item) {
-      await HistoryOfSteps.updateOne(query, update);
+      const updated = await HistoryOfSteps.updateOne(query, update);
+      console.log(updated, 'sjhvbsrjhvb')
+      return updated;
     }
     if (!item) {
-      await HistoryOfSteps.create(data);
+      const newItem = await HistoryOfSteps.create({ userId, date, steps, tokens });
+      return newItem;
     }
   }
 }

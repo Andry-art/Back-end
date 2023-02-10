@@ -15,7 +15,7 @@ class stepsHistory {
   async postNewItem(req, res, next) {
     try {
       const { userId, date, steps, tokens } = req.body;
-      // console.log(userId, 'datdatdat');
+  
       const stepsData = await userInfoService.postNewSteps(userId, date, steps, tokens);
 
       return res.status(200).json(stepsData);

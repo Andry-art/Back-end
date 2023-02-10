@@ -7,28 +7,20 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import errorMidleware from './src/middleWare/error-middleware.js';
-import expressWs from 'express-ws';
-import userInfoService from './src/services/userInfo-service.js'
 
 dotenv.config();
 const DB_URL = process.env.DB_URL;
 const PORT = 4000;
-const appExp = express();
-const { app } = expressWs(appExp);
+const app = express();
 
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     directives: {
-//       connectSrc: ["'self'", 'http://localhost:4000/'],
-//     },
-//   }),
-// );
-app.ws('/', (ws, res) => {
-  ws.on('message', async (data) => {
-    await userInfoService.postNewSteps(data)
-  });
-  ws.send('done')
-});
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      connectSrc: ["'self'", 'http://localhost:4000/'],
+    },
+  }),
+);
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
