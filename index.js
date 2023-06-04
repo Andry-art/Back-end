@@ -3,6 +3,7 @@ import helmet from 'helmet';
 import mongoose from 'mongoose';
 import authRouter from './src/routers/authRoute.js';
 import userInfoRoute from './src/routers/userInfoRoute.js';
+import discountsRoute from './src/routers/discountsRoute.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
@@ -27,6 +28,7 @@ app.use(cors());
 
 app.use('/auth', authRouter);
 app.use('/data', userInfoRoute);
+app.use('/discounts', discountsRoute);
 app.use(errorMidleware);
 
 const startApp = async () => {
