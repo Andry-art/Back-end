@@ -19,11 +19,21 @@ class discountService {
       img: data.img,
     });
    
-
     promoCodes.forEach(async it => {
       await CodeDiscount.create({ discountId: newDiscount._id, code: it });
     });
     return newDiscount;
+  }
+
+  async getAllDiscount() {
+    const allDiscounts = await Discounts.find();
+    return allDiscounts;
+  }
+
+  async getDiscountPromoCodes(data) {
+    const allDiscountsCodes = await CodeDiscount.find({ discountId: data });
+
+    return allDiscountsCodes;
   }
 }
 
